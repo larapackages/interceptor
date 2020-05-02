@@ -1,0 +1,45 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2
+    working_directory: ~/interceptor
+    steps:
+      - checkout
+      - run:
+          name: Enable PCOV, disable Xdebug
+          command: |
+            sudo pecl install pcov
+            sudo docker-php-ext-enable pcov
+            sudo rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - run: sudo composer self-update
+      - restore_cache: # special step to restore the dependency cache if `composer.json` does not change
+          keys:
+            - composer-v1-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/2.0/caching/)
+            - composer-v1-
+      - run: composer install -n --prefer-dist
+      - save_cache: # special step to save the dependency cache with the `composer.json` cache key template
+          key: composer-v1-{{ checksum "composer.json" }}
+          paths:
+            - vendor
+      - run:
+          name: Download PHPCOV phar
+          command: |
+            wget https://phar.phpunit.de/phpcov.phar
+      - run:
+          name: Running unit tests
+          command: php -d pcov.enabled=1 ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --testsuite Unit --coverage-php tmp/coverage/unit.cov
+          when: always
+      - run:
+          name: Merging reports with PHPCOV
+          command: |
+            php phpcov.phar merge tmp/coverage --html ./coverage
+          when: always
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ./vendor/orchestra/testbench-core/laravel/storage/logs/
+      - store_artifacts:
+          path: ./coverage/
