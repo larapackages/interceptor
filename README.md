@@ -1,5 +1,6 @@
 [![Build Status](https://circleci.com/gh/larapackages/interceptor.svg?style=shield)](https://circleci.com/gh/larapackages/interceptor)
 [![StyleCI Status](https://github.styleci.io/repos/260661140/shield)](https://github.styleci.io/repos/260661140)
+![StyleCI Status](https://img.shields.io/packagist/dt/larapackages/interceptor)
 
 # Why do I need it?
 ### For intercept calls to classes and abstract part of the logic to smaller classes.
