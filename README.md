@@ -9,6 +9,9 @@ Install with composer
 composer require larapackages/interceptor
 ~~~
 
+# Copy the package config to your local config with the publish command:
+php artisan vendor:publish --provider="Larapackages\Interceptor\Providers\InterceptorServiceProvider"
+
 # Usages
 
 In your `SomeClass` implements `Larapackages\Interceptor\InterceptorInterface`.
