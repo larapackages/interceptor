@@ -1,5 +1,3 @@
-![Header](https://i.imgur.com/fKhbljT.png)
-
 [![Build Status](https://circleci.com/gh/larapackages/interceptor.svg?style=shield)](https://circleci.com/gh/larapackages/interceptor)
 
 # Why do I need it?
