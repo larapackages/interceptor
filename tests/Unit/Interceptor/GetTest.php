@@ -7,16 +7,14 @@ use Larapackages\Interceptor\InterceptorInterface;
 use Larapackages\Tests\TestCase;
 
 /**
- * Class GetTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class GetTest.
  */
 class GetTest extends TestCase
 {
     public function testGet()
     {
         $interceptable = new GetTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
 
         $this->assertSame('original', $interceptor->property);
     }

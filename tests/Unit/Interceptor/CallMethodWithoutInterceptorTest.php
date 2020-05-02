@@ -7,16 +7,14 @@ use Larapackages\Interceptor\InterceptorInterface;
 use Larapackages\Tests\TestCase;
 
 /**
- * Class CallMethodWithoutInterceptorTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class CallMethodWithoutInterceptorTest.
  */
 class CallMethodWithoutInterceptorTest extends TestCase
 {
     public function testCallAnotherMethod()
     {
         $interceptable = new CallMethodWithoutInterceptorTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
 
         $this->assertSame('test', $interceptor->getParameter('test'));
     }
@@ -28,6 +26,7 @@ class CallMethodWithoutInterceptorTestInterceptable implements InterceptorInterf
     {
         return $string;
     }
+
     public static function interceptors(): array
     {
         return [

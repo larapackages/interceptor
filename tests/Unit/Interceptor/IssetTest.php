@@ -8,9 +8,7 @@ use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 
 /**
- * Class IssetTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class IssetTest.
  */
 class IssetTest extends TestCase
 {
@@ -19,7 +17,7 @@ class IssetTest extends TestCase
     public function testIsset()
     {
         $interceptable = new IssetTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
 
         $this->assertFalse(isset($interceptor->another_property));
         $this->assertTrue(empty($interceptor->another_property));
@@ -35,7 +33,7 @@ class IssetTest extends TestCase
 class IssetTestInterceptable implements InterceptorInterface
 {
     public $property_string = 'original';
-    public $property_array  = [];
+    public $property_array = [];
 
     public static function interceptors(): array
     {

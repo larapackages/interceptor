@@ -7,9 +7,7 @@ use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 
 /**
- * Class RegisterMergeConfigTest
- *
- * @package Larapackages\Tests\Unit\Providers\InterceptorServiceProvider
+ * Class RegisterMergeConfigTest.
  */
 class RegisterMergeConfigTest extends TestCase
 {

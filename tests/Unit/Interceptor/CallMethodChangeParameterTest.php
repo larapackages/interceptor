@@ -7,16 +7,14 @@ use Larapackages\Interceptor\InterceptorInterface;
 use Larapackages\Tests\TestCase;
 
 /**
- * Class CallMethodChangeParameterTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class CallMethodChangeParameterTest.
  */
 class CallMethodChangeParameterTest extends TestCase
 {
     public function testCallMethodChangeParameter()
     {
         $interceptable = new CallMethodChangeParameterTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
 
         $this->assertSame('modified test', $interceptor->getParameter('test'));
     }
@@ -28,6 +26,7 @@ class CallMethodChangeParameterTestInterceptable implements InterceptorInterface
     {
         return $string;
     }
+
     public static function interceptors(): array
     {
         return [

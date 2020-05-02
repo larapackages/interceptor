@@ -8,9 +8,7 @@ use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 
 /**
- * Class SetTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class SetTest.
  */
 class SetTest extends TestCase
 {
@@ -19,7 +17,7 @@ class SetTest extends TestCase
     public function testSet()
     {
         $interceptable = new SetTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
 
         $interceptor->property = 'modified';
 

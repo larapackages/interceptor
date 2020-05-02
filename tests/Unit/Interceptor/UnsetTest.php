@@ -9,9 +9,7 @@ use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 
 /**
- * Class UnsetTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class UnsetTest.
  */
 class UnsetTest extends TestCase
 {
@@ -20,7 +18,7 @@ class UnsetTest extends TestCase
     public function testIsset()
     {
         $interceptable = new UnsetTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
 
         $interceptor->property;
         unset($interceptor->property);
