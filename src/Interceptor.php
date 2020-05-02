@@ -3,9 +3,7 @@
 namespace Larapackages\Interceptor;
 
 /**
- * Class that allows to extend another class to do some actions or modifications before execute the class function
- *
- * @package Larapackages\Interceptor
+ * Class that allows to extend another class to do some actions or modifications before execute the class function.
  */
 class Interceptor
 {
@@ -26,7 +24,7 @@ class Interceptor
      */
     public function __construct($class)
     {
-        $this->class        = $class;
+        $this->class = $class;
         $this->interceptors = collect($class::interceptors())->transform(function ($interceptor) {
             return new $interceptor($this->class);
         })->toArray();
@@ -48,18 +46,18 @@ class Interceptor
 
             $response = $interceptor->{$method}(...$arguments);
             /**
-             * Check if response is modifying original arguments to set it
+             * Check if response is modifying original arguments to set it.
              */
             if (is_array($response)) {
                 $arguments = array_values($response);
-                /**
-                 * When response is not array or null we will send the response.
-                 * It could be for example a validation error that we need send back.
-                 */
+            /**
+             * When response is not array or null we will send the response.
+             * It could be for example a validation error that we need send back.
+             */
             } elseif (!is_null($response)) {
                 return $response;
             }
-        };
+        }
 
         //Finally return the original method call return
         return $this->class->{$method}(...$arguments);
@@ -105,5 +103,4 @@ class Interceptor
     {
         unset($this->class->{$name});
     }
-
 }

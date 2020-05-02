@@ -17,7 +17,7 @@ class InterceptorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../../config/interceptor.php';
+        $configPath = __DIR__.'/../../config/interceptor.php';
         $this->mergeConfigFrom($configPath, 'interceptor');
     }
 
@@ -27,7 +27,7 @@ class InterceptorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config/interceptor.php' => config_path('interceptor.php'),
+            __DIR__.'/../../config/interceptor.php' => config_path('interceptor.php'),
         ], 'config');
 
         $paths = array_unique(Arr::wrap($this->app['config']->get('interceptor.paths', [])));
@@ -40,7 +40,7 @@ class InterceptorServiceProvider extends ServiceProvider
             return;
         }
 
-        foreach ((new Finder)->in($paths)->files() as $class) {
+        foreach ((new Finder())->in($paths)->files() as $class) {
             $class = $this->getFullNamespace($class);
 
             if (is_null($class)) {
@@ -68,7 +68,7 @@ class InterceptorServiceProvider extends ServiceProvider
             return null;
         }
 
-        return $this->getClassNamespace($filename) . '\\' . $this->getClassName($filename);
+        return $this->getClassNamespace($filename).'\\'.$this->getClassName($filename);
     }
 
     /**
@@ -78,10 +78,10 @@ class InterceptorServiceProvider extends ServiceProvider
      */
     private function getClassNamespace($filename)
     {
-        $lines         = file($filename);
+        $lines = file($filename);
         $namespaceLine = preg_grep('/^namespace /', $lines);
         $namespaceLine = array_shift($namespaceLine);
-        $match         = [];
+        $match = [];
         preg_match('/^namespace (.*);$/', $namespaceLine, $match);
 
         return array_pop($match);
@@ -95,8 +95,8 @@ class InterceptorServiceProvider extends ServiceProvider
     private function getClassName($filename)
     {
         $directoriesAndFilename = explode('/', $filename);
-        $filename               = array_pop($directoriesAndFilename);
-        $nameAndExtension       = explode('.', $filename);
+        $filename = array_pop($directoriesAndFilename);
+        $nameAndExtension = explode('.', $filename);
 
         return array_shift($nameAndExtension);
     }

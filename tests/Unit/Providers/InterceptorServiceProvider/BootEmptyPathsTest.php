@@ -7,9 +7,7 @@ use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 
 /**
- * Class BootEmptyPathsTest
- *
- * @package Larapackages\Tests\Unit\Providers\InterceptorServiceProvider
+ * Class BootEmptyPathsTest.
  */
 class BootEmptyPathsTest extends TestCase
 {

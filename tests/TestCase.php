@@ -5,9 +5,7 @@ namespace Larapackages\Tests;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 /**
- * Class TestCase
- *
- * @package Larapackages\Tests
+ * Class TestCase.
  */
 abstract class TestCase extends BaseTestCase
 {

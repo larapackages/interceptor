@@ -5,9 +5,7 @@ namespace Larapackages\Tests\Unit\Providers\InterceptorServiceProvider\Intercept
 use Larapackages\Interceptor\InterceptorInterface;
 
 /**
- * Class TestInterceptor
- *
- * @package Larapackages\Tests\Unit\Providers\InterceptorServiceProvider\Interceptors
+ * Class TestInterceptor.
  */
 class TestInterceptor implements InterceptorInterface
 {

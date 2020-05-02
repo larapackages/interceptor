@@ -3,9 +3,7 @@
 namespace Larapackages\Tests\Traits;
 
 /**
- * Trait ReflectionTrait
- *
- * @package Tests\Traits
+ * Trait ReflectionTrait.
  */
 trait ReflectionTrait
 {

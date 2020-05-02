@@ -8,9 +8,7 @@ use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 
 /**
- * Class ConstructTest
- *
- * @package Larapackages\Tests\Unit\Interceptor
+ * Class ConstructTest.
  */
 class ConstructTest extends TestCase
 {
@@ -19,14 +17,13 @@ class ConstructTest extends TestCase
     public function testConstruct()
     {
         $interceptable = new ConstructTestInterceptable();
-        $interceptor   = new Interceptor($interceptable);
+        $interceptor = new Interceptor($interceptable);
         $this->assertSame($interceptable, $this->getClassProperty($interceptor, 'class'));
 
         $interceptors = $this->getClassProperty($interceptor, 'interceptors');
         $this->assertCount(2, $interceptors);
         $this->assertEquals(new ConstructTestInterceptorOne($interceptable), $interceptors[0]);
-        $this->assertEquals(new ConstructTestInterceptorTwo, $interceptors[1]);
-
+        $this->assertEquals(new ConstructTestInterceptorTwo(), $interceptors[1]);
     }
 }
 

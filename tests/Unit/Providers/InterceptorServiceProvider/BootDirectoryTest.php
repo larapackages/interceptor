@@ -9,9 +9,7 @@ use Larapackages\Tests\Unit\Providers\InterceptorServiceProvider\Interceptors\Te
 use Larapackages\Tests\Unit\Providers\InterceptorServiceProvider\Interceptors\TestOtherClass;
 
 /**
- * Class BootDirectoryTest
- *
- * @package Larapackages\Tests\Unit\Providers\InterceptorServiceProvider
+ * Class BootDirectoryTest.
  */
 class BootDirectoryTest extends TestCase
 {
