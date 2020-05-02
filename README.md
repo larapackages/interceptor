@@ -27,7 +27,7 @@ class SomeClass implements \Larapackages\Interceptor\InterceptorInterface {
 
 The you must use Laravel container to make the class for interceptor works.
 
-[Laravel container resolving documentation](https://laravel.com/docs/6.x/container#resolving)
+[Laravel container resolving documentation](https://laravel.com/docs/7.x/container#resolving)
 
 ```php
 $class = app()->make(SomeClass::class);

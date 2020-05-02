@@ -3,13 +3,13 @@
     "type": "library",
     "description": "Laravel Interceptor Pattern",
     "require": {
-        "php": "^7.2",
-        "illuminate/container": "^6.0"
+        "php": "^7.2.5",
+        "illuminate/container": "^7.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.26",
+        "codedungeon/phpunit-result-printer": "^0.27",
         "phpunit/phpunit": "^8.4|^9.0",
-        "orchestra/testbench": "^4.0"
+        "orchestra/testbench": "^5.0"
     },
     "autoload": {
         "psr-4": {
