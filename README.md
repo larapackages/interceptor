@@ -37,7 +37,7 @@ $class = app()->make(SomeClass::class);
 $class = resolve(SomeClass::class);
 ```
 
-##Modifying arguments
+## Modifying arguments
 
 ```php
 class ArgInterceptor {
@@ -71,7 +71,7 @@ class ArgClass implements \Larapackages\Interceptor\InterceptorInterface {
 $class = app()->make(ArgClass::class)->getName('fake'); //Will return Fake
 ```
 
-##Validate data
+## Validate data
 
 ```php
 class ArgInterceptor {
@@ -106,7 +106,7 @@ $class = app()->make(ArgClass::class)->getValidData(['name' => 'fake']); //Will 
 $class = app()->make(ArgClass::class)->getValidData(['id' => 1]); //Will return ['id' => 1]
 ```
 
-##Return responses
+## Return responses
 
 ```php
 class ArgInterceptor {
