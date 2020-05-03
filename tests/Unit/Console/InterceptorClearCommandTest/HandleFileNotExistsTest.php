@@ -13,7 +13,7 @@ class HandleFileNotExistsTest extends TestCase
 {
     public function testHandleFileNotExists()
     {
-        $file = __DIR__ . '/file_not_exists.txt';
+        $file = __DIR__.'/file_not_exists.txt';
 
         config()->set('interceptor.cache_file', $file);
 

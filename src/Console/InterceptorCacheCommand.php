@@ -32,7 +32,8 @@ class InterceptorCacheCommand extends Command
         $this->call('interceptor:clear');
 
         File::put(
-            config('interceptor.cache_file'), $this->buildInterceptorsCacheFile()
+            config('interceptor.cache_file'),
+            $this->buildInterceptorsCacheFile()
         );
 
         $this->info('Interceptors cached successfully!');
@@ -46,7 +47,7 @@ class InterceptorCacheCommand extends Command
     private function buildInterceptorsCacheFile()
     {
         $interceptors = resolve(InterceptorService::class);
-        $interceptors = $interceptors->getInterceptors()->map(function($class) {
+        $interceptors = $interceptors->getInterceptors()->map(function ($class) {
             return "\t".$class.'::class,'.PHP_EOL;
         });
 

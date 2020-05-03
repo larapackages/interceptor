@@ -17,7 +17,7 @@ class HandleTest extends TestCase
 {
     public function testHandle()
     {
-        $this->mock(InterceptorService::class, function($mock) {
+        $this->mock(InterceptorService::class, function ($mock) {
             $mock->shouldReceive('getInterceptors')->andReturn(LazyCollection::make(function () {
                 foreach ([InterceptorOne::class, InterceptorTwo::class] as $class) {
                     yield $class;

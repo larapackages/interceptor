@@ -17,7 +17,7 @@ class InterceptorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../../config/interceptor.php';
+        $configPath = __DIR__.'/../../config/interceptor.php';
         $this->mergeConfigFrom($configPath, 'interceptor');
     }
 
@@ -49,7 +49,7 @@ class InterceptorServiceProvider extends ServiceProvider
     private function registerInterceptors(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/interceptor.php' => config_path('interceptor.php'),
+            __DIR__.'/../../config/interceptor.php' => config_path('interceptor.php'),
         ], 'config');
 
         $interceptorService = resolve(InterceptorService::class);

@@ -18,7 +18,7 @@ class GetCacheInterceptorsFileExistsTest extends TestCase
 
     public function testGetCacheInterceptorsFileExists()
     {
-        $cache_file = __DIR__ . '/interceptors.php';
+        $cache_file = __DIR__.'/interceptors.php';
         config()->set('interceptor.cache_file', $cache_file);
 
         $file_content = <<<EOD
