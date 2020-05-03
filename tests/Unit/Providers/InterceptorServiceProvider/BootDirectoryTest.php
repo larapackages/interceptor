@@ -7,7 +7,6 @@ use Larapackages\Interceptor\Providers\InterceptorServiceProvider;
 use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
 use Larapackages\Tests\Unit\Providers\InterceptorServiceProvider\Interceptors\TestInterceptor;
-use Larapackages\Tests\Unit\Providers\InterceptorServiceProvider\Interceptors\TestOtherClass;
 
 /**
  * Class BootDirectoryTest.
