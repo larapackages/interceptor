@@ -2,11 +2,11 @@
 
 namespace Larapackages\Interceptor\Providers;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+use Larapackages\Interceptor\Console\InterceptorCacheCommand;
+use Larapackages\Interceptor\Console\InterceptorClearCommand;
 use Larapackages\Interceptor\Interceptor;
-use Larapackages\Interceptor\InterceptorInterface;
-use Symfony\Component\Finder\Finder;
+use Larapackages\Interceptor\Services\InterceptorService;
 
 class InterceptorServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class InterceptorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__.'/../../config/interceptor.php';
+        $configPath = __DIR__ . '/../../config/interceptor.php';
         $this->mergeConfigFrom($configPath, 'interceptor');
     }
 
@@ -26,78 +26,43 @@ class InterceptorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerCommands();
+        $this->registerInterceptors();
+    }
+
+    /**
+     * @return void
+     */
+    private function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InterceptorCacheCommand::class,
+                InterceptorClearCommand::class,
+            ]);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    private function registerInterceptors(): void
+    {
         $this->publishes([
-            __DIR__.'/../../config/interceptor.php' => config_path('interceptor.php'),
+            __DIR__ . '/../../config/interceptor.php' => config_path('interceptor.php'),
         ], 'config');
 
-        $paths = array_unique(Arr::wrap($this->app['config']->get('interceptor.paths', [])));
+        $interceptorService = resolve(InterceptorService::class);
 
-        $paths = array_filter($paths, function ($path) {
-            return is_dir($path);
+        $interceptors = $interceptorService->getCacheInterceptors();
+        if ($interceptors === null) {
+            $interceptors = $interceptorService->getInterceptors();
+        }
+
+        $interceptors->each(function ($class) {
+            $this->app->extend($class, function ($class) {
+                return new Interceptor($class);
+            });
         });
-
-        if (empty($paths)) {
-            return;
-        }
-
-        foreach ((new Finder())->in($paths)->files() as $class) {
-            $class = $this->getFullNamespace($class);
-
-            if (is_null($class)) {
-                continue;
-            }
-
-            if (in_array(InterceptorInterface::class, class_implements($class))) {
-                $this->app->extend($class, function ($class) {
-                    return new Interceptor($class);
-                });
-            }
-        }
-    }
-
-    /**
-     * @param $filename
-     *
-     * @return string|null
-     */
-    private function getFullNamespace($filename)
-    {
-        $namespace = $this->getClassNamespace($filename);
-
-        if ($namespace === null) {
-            return null;
-        }
-
-        return $this->getClassNamespace($filename).'\\'.$this->getClassName($filename);
-    }
-
-    /**
-     * @param $filename
-     *
-     * @return mixed
-     */
-    private function getClassNamespace($filename)
-    {
-        $lines = file($filename);
-        $namespaceLine = preg_grep('/^namespace /', $lines);
-        $namespaceLine = array_shift($namespaceLine);
-        $match = [];
-        preg_match('/^namespace (.*);$/', $namespaceLine, $match);
-
-        return array_pop($match);
-    }
-
-    /**
-     * @param $filename
-     *
-     * @return mixed|string
-     */
-    private function getClassName($filename)
-    {
-        $directoriesAndFilename = explode('/', $filename);
-        $filename = array_pop($directoriesAndFilename);
-        $nameAndExtension = explode('.', $filename);
-
-        return array_shift($nameAndExtension);
     }
 }

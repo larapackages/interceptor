@@ -11,7 +11,7 @@ Install with composer
 composer require larapackages/interceptor
 ~~~
 
-# Copy the package config to your local config with the publish command:
+## Publish
 ~~~
 php artisan vendor:publish --provider="Larapackages\Interceptor\Providers\InterceptorServiceProvider"
 ~~~
@@ -142,6 +142,20 @@ class ArgClass implements \Larapackages\Interceptor\InterceptorInterface {
 $class = app()->make(ArgClass::class)->getName('test'); //Will return Test Name
 $class = app()->make(ArgClass::class)->getName('second test'); //Will return second test
 ```
+
+# Cache
+In order to improve performance, this package have two commands to generate and clear cache.
+Package with automatically use the cache file if exists, otherwise it scans the paths.
+
+Generate cache:
+~~~
+php artisan interceptor:cache
+~~~
+
+Clear cache:
+~~~
+php artisan interceptor:clear
+~~~
 
 # Issues & Contributing
 If you find an issue please report it or contribute by submitting a pull request. 

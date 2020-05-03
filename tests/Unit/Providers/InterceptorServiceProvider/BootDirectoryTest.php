@@ -2,6 +2,7 @@
 
 namespace Larapackages\Tests\Unit\Providers\InterceptorServiceProvider;
 
+use Larapackages\Interceptor\Interceptor;
 use Larapackages\Interceptor\Providers\InterceptorServiceProvider;
 use Larapackages\Tests\TestCase;
 use Larapackages\Tests\Traits\ReflectionTrait;
@@ -25,6 +26,7 @@ class BootDirectoryTest extends TestCase
 
         $extenders = $this->getClassProperty($this->app, 'extenders');
         $this->assertArrayHasKey(TestInterceptor::class, $extenders);
-        $this->assertArrayNotHasKey(TestOtherClass::class, $extenders);
+
+        $this->assertInstanceOf(Interceptor::class, resolve(TestInterceptor::class));
     }
 }
