@@ -48,13 +48,6 @@ class ArgInterceptor {
         
         return compact('name');
     }
-
-    public static function interceptors(): array
-    {
-        return [
-            // Classes namespaces that will intercept this class
-        ];
-    }
 };
 
 class ArgClass implements \Larapackages\Interceptor\InterceptorInterface {
@@ -81,13 +74,6 @@ class ArgInterceptor {
         $validator = \Illuminate\Support\Facades\Validator::make($data, [
             'id' => 'required',
         ])->validate();
-    }
-
-    public static function interceptors(): array
-    {
-        return [
-            // Classes namespaces that will intercept this class
-        ];
     }
 };
 
@@ -117,13 +103,6 @@ class ArgInterceptor {
             return 'Test Name';
         }
     }
-
-    public static function interceptors(): array
-    {
-        return [
-            // Classes namespaces that will intercept this class
-        ];
-    }
 };
 
 class ArgClass implements \Larapackages\Interceptor\InterceptorInterface {
@@ -145,7 +124,7 @@ $class = app()->make(ArgClass::class)->getName('second test'); //Will return sec
 
 # Cache
 In order to improve performance, this package have two commands to generate and clear cache.
-Package with automatically use the cache file if exists, otherwise it scans the paths.
+Package will automatically use the cache file if exists, otherwise it scans the paths.
 
 Generate cache:
 ~~~
