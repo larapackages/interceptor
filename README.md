@@ -1,9 +1,10 @@
 [![Build Status](https://circleci.com/gh/larapackages/interceptor.svg?style=shield)](https://circleci.com/gh/larapackages/interceptor)
 [![StyleCI Status](https://github.styleci.io/repos/260661140/shield)](https://github.styleci.io/repos/260661140)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8cb5b3db6b0d4255a8723c961be36291)](https://www.codacy.com/gh/larapackages/interceptor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=larapackages/interceptor&amp;utm_campaign=Badge_Grade)
 ![StyleCI Status](https://img.shields.io/packagist/dt/larapackages/interceptor)
 
-# Why do I need it?
-### For intercept calls to classes and abstract part of the logic to smaller classes.
+# Why do I need it
+For intercept calls to classes and abstract part of the logic to smaller classes
 
 # Installation
 Install with composer

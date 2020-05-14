@@ -54,7 +54,7 @@ class Interceptor
              * When response is not array or null we will send the response.
              * It could be for example a validation error that we need send back.
              */
-            } elseif (!is_null($response)) {
+            } elseif ($response !== null) {
                 return $response;
             }
         }
